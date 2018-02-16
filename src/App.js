@@ -1,13 +1,33 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { NUM_AVAILABLE_COLORS } from 'lib/colorsListConfig';
+import { COLORS_SCHEME_LIST } from 'lib/colorsListConfig';
 
 export default class App extends Component {
-	renderColorBlocks = () => {};
+	renderColorScheme = shadesList => {
+		return shadesList.map(({ id, hex, name }) => (
+			<div
+				key={id}
+				className="colorBlock"
+				style={{ backgroundColor: hex }}
+			>
+				<button className="copyButton">COPY</button>
+				<div className="colorHex">{name}</div>
+			</div>
+		));
+	};
+
+	renderColorsList = () => {
+		return Object.entries(COLORS_SCHEME_LIST).map(colorScheme => {
+			const colorName = colorScheme[0];
+			const shadesList = colorScheme[1];
+			return (
+				<div key={colorName}>{this.renderColorScheme(shadesList)}</div>
+			);
+		});
+	};
 
 	render() {
-		console.log(NUM_AVAILABLE_COLORS);
 		return (
 			<div className="App">
 				<header className="App-header">
@@ -20,6 +40,9 @@ export default class App extends Component {
 					To get started, edit <code>src/App.js</code> and save to
 					reload.
 				</p>
+				<div className="colorListContainer">
+					{this.renderColorsList()}
+				</div>
 			</div>
 		);
 	}
