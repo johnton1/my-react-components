@@ -10,24 +10,10 @@
 import React, { Component } from 'react';
 
 // Components
-import HomePage from 'components/modules/home';
+import ColorsTable from '../../fields/colorsTable';
 
-// Constants
-import { COLORS_SCHEME_LIST } from 'lib/colorsListConfig';
-
-// Image
-import logo from './logo.svg';
-
-// Style
-import './App.css';
-
-export default class App extends Component {
-
-	render() {
-		return (
-			<div className="App">
-				<HomePage/>
-			</div>
-		);
-	}
+export default class Home extends Component {
+  render() {
+    return <div><ColorsTable/></div>;
+  }
 }
